@@ -8,8 +8,8 @@ require("includes/functions.php");
 
 if(isset($_POST['submit'])) {
  
-$messagesql = "INSERT INTO messages(`date`, `user_id`, `topic_id`, `subject`, `body`, `img`) "
-        . "VALUES(NOW(), '" . $_SESSION['USERID'] . "', '" . $_POST['id'] . "', '".  $_POST['subject'] . "','" . $_POST['body'] . "','".$_SESSION['USERIMG']."')";
+$messagesql = "INSERT INTO messages(`date`, `user_id`, `topic_id`, `subject`, `body`) "
+        . "VALUES(NOW(), '" . $_SESSION['USERID'] . "', '" . $_POST['id'] . "', '".  $_POST['subject'] . "','" . $_POST['body']."')";
                                                        
 mysqli_query($dbc, $messagesql) or die(mysqli_error($dbc));
 header("Location: " . $config_basedir . "/viewmessages.php?id=" . $_POST['id']);

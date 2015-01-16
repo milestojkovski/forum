@@ -1,21 +1,23 @@
 <?php
 $pagename = "Add Forum";
 session_start();
-require("includes/config.php");
+include("includes/config.php");
 require("includes/functions.php");
-$dbhost = "localhost";
+/*$dbhost = "localhost";
 $dbuser = "root";
 $dbpassword = "";
 $dbdatabase = "testforum";
 $db = mysql_connect($dbhost, $dbuser, $dbpassword);
-mysql_select_db($dbdatabase, $db);
+mysql_select_db($dbdatabase, $db);*/
 
-if(isset($_SESSION['ADMIN']) == FALSE) {
-	header("Location: " . $config_basedir . "/admin.php?ref=add");
+if(!isset($_SESSION['ADMIN'])) {
+	//header("Location: " . $config_basedir . "/admin.php?ref=add");
+    	header("Location: " . $config_basedir );
+
 }
-if($_POST['submit']) {
+elseif (isset($_POST['submit'])) {
 	$topicsql = "INSERT INTO forums(cat_id, name, description) VALUES(". $_POST['cat'] . ", '" . $_POST['name'] . "', '" . $_POST['description'] . "');";
-	mysql_query($topicsql);
+	mysqli_query($dbc,$topicsql) or die (mysqli_error($dbc));
 	header("Location: " . $config_basedir);
 }
 else {
@@ -29,16 +31,16 @@ else {
         <form action="addforum.php" method="post">
             <table>
                 <?php
-                    if ($validforum == 0){
+                   /* if ($validforum == 0){*/
                     $forumssql = "SELECT * FROM categories ORDER BY name;";
-                    $forumsresult = mysql_query($forumssql);
+                    $forumsresult = mysqli_query($dbc,$forumssql) or die (mysqli_error($dbc));;
                 ?>
                 <tr>
                     <td>Category</td>
                     <td>
                     <select name="cat">
                     <?php
-                        while($forumsrow = mysql_fetch_assoc($forumsresult)) {
+                        while($forumsrow = mysqli_fetch_array($forumsresult,MYSQLI_ASSOC)) {
                             echo "<option value='" . $forumsrow['id'] . "'>" . $forumsrow['name'] . "</option>";
                         }
                     ?>
@@ -66,7 +68,7 @@ else {
   </tr>
 </table>
 <?php
-}
+//}
 require ("includes/inner-bottom.php");
 require("includes/footer.php");
 ?>

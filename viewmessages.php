@@ -89,12 +89,13 @@ $temp = $threadrow['user_id'];
 //$q = "SELECT users.img FROM users, messages WHERE users.id = '". $temp ."' "; // WOOOORKING QUERYYYY
     $us=$threadrow['username'];
 
-$q = "SELECT users.img FROM users, messages WHERE users.username = '". $us ."' "; 
+$q = "SELECT users.img FROM users WHERE users.username = '". $us ."' "; 
 
 
 $r = mysqli_query($dbc, $q);
 $row = mysqli_fetch_array($r, MYSQLI_ASSOC) or die(mysqli_error($dbc));
-echo "<img width='100' height='100' src='../uploads/".$row['img']."' alt='Profile Pic'>";
+echo "<img width='100' height='150' src='../uploads/".$row['img']."' alt='Profile Pic'>";
+//	<td width=\"100%\"><a href=\"viewtopic905b.html?p=2#2\"><img src=\"images/icon_minipost.gif\" width=\"12\" height=\"9\" alt=\"Post\" title=\"Post\" border=\"0\" /></a><span class=\"postdetails\">Post subject: $threadrow[subject]</span></td>
 
 echo"
 
@@ -102,7 +103,8 @@ echo"
 		<td class=\"row1\" width=\"100%\" height=\"28\" valign=\"top\"><table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
 			
                         <tr>
-				<td width=\"100%\"><a href=\"viewtopic905b.html?p=2#2\"><img src=\"images/icon_minipost.gif\" width=\"12\" height=\"9\" alt=\"Post\" title=\"Post\" border=\"0\" /></a><span class=\"postdetails\">Post subject: $threadrow[subject]</span></td>
+                                
+				<td width=\"100%\"><img src=\"images/icon_minipost.gif\" width=\"12\" height=\"9\" alt=\"Post\" title=\"Post\" border=\"0\" /><span class=\"postdetails\">Post subject: $threadrow[subject]</span></td>
 				<td valign=\"top\" nowrap=\"nowrap\"></td>
 			</tr>
 			<tr>
@@ -117,7 +119,7 @@ if (isset($_SESSION['ADMIN'])) {
 
         echo"  
                         
-				<div id='abc'><td colspan=\"2\"><span class=\"postbody\">$threadrow[body]</span></td></div>
+				<td>$threadrow[body]</td>
 			</tr>
 		</table></td>
 	</tr>

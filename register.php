@@ -42,7 +42,7 @@ $errors = array(); // Initialize an error array.
 	
 	// Check for a username:
 	if (empty($_POST['username'])) {
-		$errors[] = 'You forgot to enter your last name.';
+		$errors[] = 'You forgot to enter your username.';
 	} else {
 		$un = mysqli_real_escape_string($dbc, trim($_POST['username']));
 	}
@@ -127,6 +127,7 @@ break;
 }}
 ?>
 
+    
 <form action="register.php" method="POST">
 <table>
 <tr>

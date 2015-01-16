@@ -98,10 +98,10 @@ a.topictitle:hover	{ text-decoration: underline; color : #DD6900; }
 
 .name			{ font-size : 11px; color : #000000;}
 
-.postdetails		{ font-size : 10px; color : #000000; }
+.postdetails		{ font-size : 12px; color : #000000; }
 
 
-.postbody { font-size : 12px;}
+/*.postbody { font-size : 12px; color: red; display:flex}*/
 a.postlink:link	{ text-decoration: none; color : #006699 }
 a.postlink:visited { text-decoration: none; color : #5493B4; }
 a.postlink:hover { text-decoration: underline; color : #DD6900}

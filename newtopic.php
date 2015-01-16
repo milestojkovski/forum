@@ -3,21 +3,21 @@ $pagename = "New Topic";
 session_start();
 require("includes/config.php");
 require("includes/functions.php");
-$dbhost = "localhost";
+/*$dbhost = "localhost";
 $dbuser = "root";
 $dbpassword = "";
 $dbdatabase = "testforum";
 $db = mysql_connect($dbhost, $dbuser, $dbpassword);
-mysql_select_db($dbdatabase, $db);
+mysql_select_db($dbdatabase, $db);*/
 
 $forchecksql = "SELECT * FROM forums;";
-$forcheckresult = mysql_query($forchecksql);
-$forchecknumrows = mysql_num_rows($forcheckresult);
+$forcheckresult = mysqli_query($dbc,$forchecksql);
+$forchecknumrows = mysqli_num_rows($forcheckresult);
 if($forchecknumrows == 0) {
 header("Location: " . $config_basedir);
 }
 if(isset($_GET['id']) == TRUE) {
-	if(is_numeric($_GET['id']) == FALSE) {
+	if(!is_numeric($_GET['id'])) {
 	$error = 1;
 	}
 	if($error == 1) {
@@ -31,7 +31,7 @@ else {
 	$validforum = 0;
 }
 
-if(isset($_SESSION['USERNAME']) == FALSE) {
+if(!isset($_SESSION['USERNAME'])) {
 header("Location: " . $config_basedir . "/login.php?ref=newpost&id=" . $validforum);
 }
 
@@ -41,18 +41,20 @@ else {
 		$topicsql = "INSERT INTO topics(date, user_id, forum_id, subject) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . $_POST['forum'] . ", '" . $_POST['subject'] . "');";}
 		else {
 		$topicsql = "INSERT INTO topics(date, user_id, forum_id, subject) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . $validforum . ", '" . $_POST['subject'] . "');";}
-		mysql_query($topicsql);
-		$topicid = mysql_insert_id();
-		$messagesql = "INSERT INTO messages(date, user_id, topic_id, subject, body) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . mysql_insert_id() . ", '" . $_POST['subject'] . "', '" . $_POST['body'] . "');";
-		mysql_query($messagesql);
+		mysqli_query($dbc,$topicsql) or die (mysqli_error($dbc));
+		//$topicid = mysqli_insert_id();
+                $topicid = mysqli_insert_id($dbc);
+              //  echo"$topicid.dadadadad";
+		$messagesql = "INSERT INTO messages(date, user_id, topic_id, subject, body) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . mysqli_insert_id($dbc) . ", '" . $_POST['subject'] . "', '" . $_POST['body'] . "');";
+		mysqli_query($dbc,$messagesql)or die (mysqli_error($dbc));
 		header("Location: " . $config_basedir . "/viewmessages.php?id=" . $topicid);
 	}
 	require("includes/header.php");
 	require ("includes/inner-top.php");
 	if($validforum != 0) {
 		$namesql = "SELECT name FROM forums WHERE id = $validforum;";
-		$nameresult = mysql_query($namesql);
-		$namerow = mysql_fetch_assoc($nameresult);
+		$nameresult = mysqli_query($dbc,$namesql) or die (mysqli_error($dbc));
+		$namerow = mysqli_fetch_array($nameresult,MYSQLI_ASSOC);
 		echo "<h2>Post new message to the " . $namerow['name'] . "forum</h2>";
 		echo "<h2>Post a new message</h2>";
 }
@@ -65,14 +67,14 @@ method="post">
 <?php
 if ($validforum == 0) {
 	$forumssql = "SELECT * FROM forums ORDER BY name;";
-	$forumsresult = mysql_query($forumssql);
+	$forumsresult = mysqli_query($dbc,$forumssql) or die (mysqli_error($dbc));
 ?>
 <tr>
 <td>Forum</td>
 <td>
 <select name="forum">
 <?php
-while($forumsrow = mysql_fetch_assoc($forumsresult)) {
+while($forumsrow = mysqli_fetch_array($forumsresult, MYSQLI_ASSOC)) {
 	echo "<option value='" . $forumsrow['id'] . "'>" . $forumsrow['name'] . "</option>";
 }
 ?>

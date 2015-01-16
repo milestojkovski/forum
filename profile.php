@@ -16,10 +16,11 @@ if (isset($_POST['submit'])) {
 		// Validate the type. Should be JPEG or PNG.
 		$allowed = array ('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
 		if (in_array($_FILES['upload']['type'], $allowed)) {
-		
+                            $file_name = $_SESSION['USERNAME'];
+                            //echo"$file_name";// renaming the name so there is no file with same name in the databaseeee
 			// Move the file over.
-			if (move_uploaded_file ($_FILES['upload']['tmp_name'], "../uploads/{$_FILES['upload']['name']}")) {
-                            $q = mysqli_query($dbc,"UPDATE users SET img = '".$_FILES['upload']['name']."' WHERE username = '".$_SESSION['USERNAME']."'");// or die (mysqli_error_list($dbc));
+			if (move_uploaded_file ($_FILES['upload']['tmp_name'], "../uploads/{$file_name}.jpg")) {
+                            $q = mysqli_query($dbc,"UPDATE users SET img = '".$file_name.".jpg"."' WHERE username = '".$_SESSION['USERNAME']."'");// or die (mysqli_error_list($dbc));
                        //just for testing when the trigger was not working     //$dane = mysqli_query($dbc, "UPDATE messages SET img = '".$_FILES['upload']['name']."' WHERE username = '".$_SESSION['USERNAME']."'");
 				echo '<p><em>your profile pic has been changed!</em></p>';
 			} // End of move... IF.
@@ -93,7 +94,7 @@ if (isset($_POST['submit'])) {
                                 if($row['img'] == NULL){
                                         echo "<img width='100' height='100' src='../uploads/default.jpg' alt='Default Profile Pic'>";
                                 } else {
-                                   echo "<img width='100' height='100' src='../uploads/".$row['img']."' alt='Profile Pic'>";
+                                   echo "<img width='100' height='150' src='../uploads/".$row['img']."' alt='Profile Pic'>";
                                 
                                     
 
@@ -110,7 +111,7 @@ if (isset($_POST['submit'])) {
                 
 <tr>
 <td>Please chose photo for your profile picture</td>
-<td><input type="file" name="upload" value="<?php.$_SESSION['USERNAME']?>"></td>
+<td><input type="file" name="upload"></td>
 <td> <input type="submit" name="submit" value="Submit!"></td>
 </tr>
 
