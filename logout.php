@@ -46,9 +46,9 @@ setTimeout("window.location='"+url+"'",seconds);
 
 
     <script>
-    //change below target URL to your own
+        //change below target URL to your own
         var targetURL = "http://127.0.0.1:8000/forums"
-    //change the second to start counting down from
+        //change the second to start counting down from
         var countdownfrom = 5
 
 
