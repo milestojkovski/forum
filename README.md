@@ -1,6 +1,9 @@
 # forum
 Forum Website Web Development Class
-
+login for admin: username admin
+                 password stojkovski
+login for user: username miletest
+                password stojkovski
 NOTE: this is just a draft, i am still working on the functionalities. 
 
 For picture upload to work you need folder called uploads OUTSIDE forums folder!
