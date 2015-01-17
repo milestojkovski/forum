@@ -18,7 +18,7 @@ require("includes/header.php");
         <td>
 
 
-            <!--<form method="post" action="http://phpbb.siteground.com/SiteGroundPHPbb6/viewforum.php?f=3&amp;start=0"> -->
+         
             <form>
                 <table width="100%" cellspacing="2" cellpadding="2" border="0" align="center">
                     <tr>
