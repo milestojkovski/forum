@@ -34,7 +34,7 @@ $topicrow = mysqli_fetch_array($topicresult, MYSQLI_ASSOC);
             <table width="100%" cellspacing="2" cellpadding="2" border="0">
                 <tr>
                     <td align="left" valign="bottom" colspan="2">
-                        <?php echo "<a class=\"maintitle\" href=\" "/* . pf_script_with_get($SCRIPT_NAME) */ . " \">" . $topicrow['subject'] . "</a>"; ?>
+                        <?php echo "<a class=\"maintitle\" href=\" " . " \">" . $topicrow['subject'] . "</a>"; ?>
 
 
                         <br />      

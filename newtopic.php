@@ -57,7 +57,7 @@ if (!isset($_SESSION['USERNAME'])) {
     }
     ?>
 
-    <!-- <form action="<?php echo pf_script_with_get($SCRIPT_NAME); ?>" -->
+    
     <form action="newtopic.php"
           method="post">
         <table>

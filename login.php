@@ -66,7 +66,7 @@ if (isset($_POST['submit'])) {                                                  
     }
 }
 ?>
-<!--<form action="<?php echo pf_script_with_post($SCRIPT_NAME); ?>" -->
+
 <form action="login.php"
       method="POST">
     <table>

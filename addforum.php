@@ -24,7 +24,7 @@ if (!isset($_SESSION['ADMIN'])) {
     <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
         <tr>
             <td align="center">
-                 <!-- <form action="<?php echo pf_script_with_get($SCRIPT_NAME); ?>" method="post"> -->
+                 
                 <form action="addforum.php" method="post">
                     <table>
     <?php

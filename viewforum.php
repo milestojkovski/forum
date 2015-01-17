@@ -28,8 +28,8 @@ require("includes/header.php");
                             $forumsql = "SELECT * FROM forums WHERE id = " . $validforum . ";";
                             $forumresult = mysqli_query($dbc, $forumsql);
                             $forumrow = mysqli_fetch_array($forumresult, MYSQLI_ASSOC);
-                            //href=\" "/*. pf_script_with_get($SCRIPT_NAME)*/ ." \">". $top
-                            echo "<span class=\"maintitle\"><a class=\"maintitle\" href='index.php'>Forums</a> &raquo; <a class=\"maintitle\" href=\" "/* . pf_script_with_get($SCRIPT_NAME) */ . " \">" . $forumrow['name'] . "</a></span>";
+                            
+                            echo "<span class=\"maintitle\"><a class=\"maintitle\" href='index.php'>Forums</a> &raquo; <a class=\"maintitle\" href=\" " . " \">" . $forumrow['name'] . "</a></span>";
                             ?>      
                         </td>
                         <td align="right" valign="bottom" nowrap="nowrap"><span class="gensmall"><b></b></span></td>
