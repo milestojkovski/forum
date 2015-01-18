@@ -28,7 +28,7 @@ $config_forumsname = "Discussion Forum";
  * 
  */
 
-
+$url_home = 'index.php';
 $config_basedir = "http://127.0.0.1:8000/forums";
 ?>
 

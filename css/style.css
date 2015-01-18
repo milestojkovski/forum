@@ -217,6 +217,78 @@ a.sgfooter:hover, a.sgfooter:active {
     color: red;
 }
 
-.errorban{
-  
+
+.left
+{
+	text-align:left;
+}
+.center
+{
+	text-align:center;
+}
+
+
+.content
+{
+	
+	width:120%;
+        
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	margin-left: -80px;
+	padding:20px;
+       
+	
+}
+.message
+{
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	padding:20px;
+	margin:auto;
+	
+	color:#black;
+	text-align:center;
+	font-weight:bold;
+	margin-top:20px;
+}
+.messages_table 
+{
+	width: 80%
+}
+.messages_table td
+{
+	border-top:1px solid #aaaaaa;
+	vertical-align:top;
+        
+}
+.author
+{
+	width:150px;
+	border-right:1px solid #aaaaaa;
+}
+
+
+.date
+{
+	font-style:italic;
+	text-align:right;
+	font-size:0.9em;
+	margin-right:10px;
+}
+.title_cell
+{
+	width:45%;
+}
+.link_new_pm
+{
+	font-size:1.3em;
+	font-weight:bold;
+	margin:5px 0px 5px 0px;
+	display:inline-block;
+	border:1px solid #dddddd;
+	background:#ffffff;
+	padding:5px;
 }

@@ -54,10 +54,13 @@ require ("config.php");
                                         if (isset($_SESSION['USERNAME'])) {
                                             if (isset($_SESSION['ADMIN'])) {
                                                 echo "<td><a href='addcat.php' class='mainmenu'>New Category</a></td>";
-                                                echo "<td><a href='addforum.php' class='mainmenu'>New Forum</a></td>";
                                                 echo "<td><a href='members.php' class='mainmenu'> Members </a></td>";
                                             }
+                                            echo "<td><a href='addforum.php' class='mainmenu'>New Forum</a></td>";
                                             echo "<td><a href='newtopic.php' class='mainmenu'>New Topic</a></td>";
+                                            echo "<td><a href='list_pm.php' class='mainmenu'>Personal Messages</a></td>";
+
+
                                             
                                         } else {
                                             echo "<td><a href='login.php' class='mainmenu'>Login</a></td>";
@@ -68,10 +71,10 @@ require ("config.php");
 
 
                                             echo"<td>&nbsp;&nbsp;"
-                                            . "&nbsp;&nbsp;"
-                                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
-                                            . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                                            . "&nbsp;"
+                                            . "&nbsp;"
+                                            . "&nbsp;"
+                                            . "&nbsp;"
                                             . "&nbsp;</td>";
                                             echo "<td> <small>Currently logged in as:</small><a href=profile.php> {$_SESSION['USERNAME']}</a></td>";
                                             echo "<td><a href='logout.php' class='mainmenu'>Logout</a></td>";
