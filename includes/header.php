@@ -55,7 +55,7 @@ require ("config.php");
                                             if (isset($_SESSION['ADMIN'])) {
                                                 echo "<td><a href='addcat.php' class='mainmenu'>New Category</a></td>";
                                                 echo "<td><a href='addforum.php' class='mainmenu'>New Forum</a></td>";
-                                                echo "<td> <a href='members.php' class='mainmenu'> Members </a></td>";
+                                                echo "<td><a href='members.php' class='mainmenu'> Members </a></td>";
                                             }
                                             echo "<td><a href='newtopic.php' class='mainmenu'>New Topic</a></td>";
                                             

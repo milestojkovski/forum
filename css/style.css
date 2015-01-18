@@ -212,4 +212,7 @@ a.sgfooter:hover, a.sgfooter:active {
 	color: #333333;
 	text-decoration: none;
 }
-
+.error{
+    
+    color: red;
+}

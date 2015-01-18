@@ -30,7 +30,7 @@ At least one numeric digit");
             } else {
                 for ($i = 0; $i < 16; $i++) {
                     //$randomstring .= chr(mt_rand(32,126));
-                    $randomstring .= chr(mt_rand(32, 126));
+                   $randomstring .= chr(mt_rand(32, 126));
                 }
                 $verifyurl = "$config_basedir/verify.php";
                 $verifystring = urlencode($randomstring);
@@ -74,7 +74,8 @@ At least one numeric digit");
 
                 if (empty($errors)) { // If everything's OK.
 //if ($_POST['username'] && $_POST['password1'] && $_POST['password2'] && $_POST['email']) {
-                    $sql = "INSERT INTO users(username, password, email, verifystring, active) VALUES( '$un'  ,  SHA1('$p')  ,  '$e'  , '" . addslashes($randomstring) . "', 0);";
+                    $sql = "INSERT INTO users(username, password, email, verifystring, active, registration_date) VALUES( '$un'  ,  SHA1('$p')  ,  '$e'  , '" . addslashes($randomstring) . "', 0, NOW());";
+                   // insert the valus for the user
                     mysqli_query($dbc, $sql) or die(mysqli_error($dbc));
 
                     $mail_body = "Hi $validusername, Please click on the following link to verify your new account: $verifyurl?email=$verifyemail&verify=$verifystring";
