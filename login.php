@@ -8,6 +8,7 @@ require("includes/config.php");
 require("includes/functions.php");
 //$db = mysql_connect($dbhost, $dbuser, $dbpassword);
 //mysql_select_db($dbdatabase, $db);
+
 if (isset($_POST['submit'])) {
     $password = mysql_real_escape_string(sha1($_POST['password']));                              //$_POST['password']
     ///////echo"$password";
@@ -16,9 +17,9 @@ if (isset($_POST['submit'])) {
     $numrows = mysqli_num_rows($result);
     if ($numrows == 1) {
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        if ($row['active'] == 1) {
-            //session_register("USERNAME");
-            //session_register("USERID");
+        /*if ($row['ban']==1){ echo '<p class="errorban">you have been banned.</p>';}
+        else*/if ($row['active'] == 1 && $row['ban']==0) {
+            
             $_SESSION['USERNAME'] = $row['username'];
             $_SESSION['USERID'] = $row['id'];
             $_SESSION['USERIMG'] = $row['img'];
@@ -29,14 +30,14 @@ if (isset($_POST['submit'])) {
             }
             switch ($_GET['ref']) {
                 case "newpost":
-                    if (isset($_GET['id']) == FALSE) {
+                    if (!isset($_GET['id'])) {
                         header("Location: " . $config_basedir . "/newtopic.php");
                     } else {
                         header("Location: " . $config_basedir . "/newtopic.php?id=" . $_GET['id']);
                     }
                     break;
                 case "reply":
-                    if (isset($_GET['id']) == FALSE) {
+                    if (!isset($_GET['id'])) {
                         header("Location: " . $config_basedir . "/newtopic.php");
                     } else {
                         header("Location: " . $config_basedir . "/reply.php?id=" . $_GET['id']);
@@ -55,6 +56,10 @@ if (isset($_POST['submit'])) {                                                  
     $sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "' AND password = '" . $password . "';";
     $result = mysqli_query($dbc, $sql);
     $numrows = mysqli_num_rows($result);
+    if($row['ban']==1){
+        echo"<p><font color=\"red\">You have been banned</font></p>";
+        
+    }
     if ($numrows == 1 && $row['active'] != 1) {
         echo "<p><small><font color=\"red\">This account is not verified yet. You were emailed a link
 			to verify the account. Please click on the link in the email to

@@ -81,15 +81,20 @@ echo '<table align="center" cellspacing="0" cellpadding="5" width="75%">
 
 // Fetch and print all the records....
 $bg = '#eeeeee'; 
-while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
+while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // to be done.
 	$bg = ($bg=='#00CC00' ? '#fffff' : '#00CC00');
-		echo '<tr bgcolor="' . $bg . '">
-		
+		echo '<tr>
+                    
+                    <font color="' . $bg . '">s
 		<td align="left">' . $row['username'] . '</td>
 		<td align="left">' . $row['email'] . '</td>
 		<td align="left">' . $row['dr'] . '</td>
 		<td align="left"><a href="delete_member.php?id=' . $row['id'] . '">Delete</a></td>
+		<td align="left"><a href="ban_member.php?id=' . $row['id'] . '">Ban</a></td>
+                <td align="left"><a href="unban_member.php?id=' . $row['id'] . '">Un Ban</a></td>
 
+</font>
+		
 	</tr>
 	';
 } // End of WHILE loop.
