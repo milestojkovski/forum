@@ -61,7 +61,7 @@ require("includes/header.php");
 
                 $topicsql = "SELECT id FROM topics WHERE forum_id = " . $forumrow['id'];
                 $topicresult = mysqli_query($dbc, $topicsql);
-                $topicnumrows = mysqli_num_rows($topicresult);
+                $topicnumrows = mysqli_num_rows($topicresult); // count the right number (the number of topic inside forum)
 
                 echo "<tr>
 	<td class=\"row1\" width=\"100%\" height=\"50\" style=\"padding-left: 10px;\">";

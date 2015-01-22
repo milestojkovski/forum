@@ -5,7 +5,7 @@ NOTE: this is just a draft, i am still working on the functionalities.
 
 For picture upload to work you need folder called uploads OUTSIDE forums folder!
 
-.sql file can be found here: https://www.dropbox.com/s/dzmzhiwmwf17yol/testforum%20%282%29.sql?dl=0
+.sql file can be found here: https://www.dropbox.com/s/me9qx0r2hmcztj6/testforum%20%283%29.sql?dl=0
 it creates database named testforum and it is ready to use.
 
 

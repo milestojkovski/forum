@@ -92,13 +92,13 @@ while ($row = mysqli_fetch_assoc($q)) {
     echo "User since: <b>" . $row['registration_date'] . "</b><br>";
     NumberOfForumsOpened(); // function that is in includes/functions.php that counts how many forums the user has opened.
 
-    echo "<br>";
+    echo "<br><br>";
 }
 ?>
         <form action="" method="post" enctype="multipart/form-data">
             <table>                 
                 <tr>
-                    <td>Please chose photo for your profile picture  <p id="PicPolicy">Click here for picture policy</p></td>
+                    <td>Please chose/change your profile picture  <p id="PicPolicy"><small>Click here for picture policy</small></p></td>
                     <input type="hidden" name="MAX_FILE_SIZE" value="3145728" />
                     <!-- 3MB the most you can upload-->
             </tr>
