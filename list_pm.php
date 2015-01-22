@@ -65,6 +65,7 @@ if(intval(mysqli_num_rows($req1))==0)
 while($dn2 = mysqli_fetch_array($req2))
 {
 ?>
+    
 	<tr>
     	<td class="left"><a href="read_pm.php?id=<?php echo $dn2['id']; ?>"><?php echo htmlentities($dn2['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
     	<td><?php echo $dn2['reps']-1; ?></td>

@@ -8,7 +8,8 @@ require ("includes/inner-top.php");
 ?>
 
 <html>
-    <head>   
+    <head>
+        
         <title>Read a PM</title>
     </head>
     <body>
