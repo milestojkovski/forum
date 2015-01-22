@@ -11,4 +11,4 @@ it creates database named testforum and it is ready to use.
 
 I was following these steps so the email would work http://stackoverflow.com/questions/15965376/how-to-configure-xampp-to-send-mail-from-localhost
 
-the contributors leandroizr and milestojkovski are same person
+
