@@ -6,17 +6,12 @@ require("includes/header.php");
 require ("includes/inner-top.php");
 
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <link href="<?php echo $design; ?>/style.css" rel="stylesheet" title="Style" />
         <title>New PM</title>
     </head>
     <body>
-    	<div class="header">
-
-        </div>
+    	
 <?php
 //We check if the user is logged
 if(isset($_SESSION['USERNAME']))
@@ -58,7 +53,7 @@ if(isset($_POST['title'], $_POST['recip'], $_POST['message']))
 				{
 ?>
 <div class="message">The message has successfully been sent.<br />
-<a href="list_pm.php">List of my personnal messages</a></div>
+<a href="list_pm.php">List of my personal messages</a></div>
 <?php
 					$form = false;
 				}
@@ -99,17 +94,60 @@ if(isset($error))
 	echo '<div class="message">'.$error.'</div>';
 }
 //We display the form
-?>
+?><!--
 <div class="content">
 	<h1>New Personnal Message</h1>
     <form action="new_pm.php" method="post">
 		Please fill the following form to send a personnal message.<br />
-        <label for="title">Title</label><input type="text" value="<?php echo htmlentities($otitle, ENT_QUOTES, 'UTF-8'); ?>" id="title" name="title" /><br />
-        <label for="recip">Recipient<span class="small">(Username)</span></label><input type="text" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>" id="recip" name="recip" /><br />
-        <label for="message">Message</label><textarea cols="40" rows="5" id="message" name="message"><?php echo htmlentities($omessage, ENT_QUOTES, 'UTF-8'); ?></textarea><br />
+                <p  id="title">  Title  <input type="text" value="<?php echo htmlentities($otitle, ENT_QUOTES, 'UTF-8'); ?>" name="title" /></p>
+                <p id="recip">  Recipient<span class="small">(Username)</span><input type="text" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>"  name="recip" /></p>
+                <div id="message">  Message<textarea cols="40" rows="5"  name="message"><?php echo htmlentities($omessage, ENT_QUOTES, 'UTF-8'); ?></textarea></div><br />
         <input type="submit" value="Send" />
     </form>
-</div>
+</div>-->
+
+<table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
+        <tr>
+            <td align="center">
+                 
+                <form action="new_pm.php" method="post">
+                    <h5>Please fill the following form to send a personal message.<br /></h5>
+                    <table>
+    
+                        <tr>
+                            <td>Title</td>
+                            <td>
+                               <input type="text" value="<?php echo htmlentities($otitle, ENT_QUOTES, 'UTF-8'); ?>" name="title" />
+                            </td>
+                        </tr>
+    
+                    <tr>
+                        <td>Name (Username)</td>
+                        <td>
+                            <input type="text" value="<?php echo htmlentities($orecip, ENT_QUOTES, 'UTF-8'); ?>"  name="recip" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Message</td>
+                        <td>
+                            
+                       <textarea cols="40" rows="5"  name="message"><?php echo htmlentities($omessage, ENT_QUOTES, 'UTF-8'); ?></textarea>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>        
+                            <input type="submit" value="Send" />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </td>
+    </tr>
+</table>
+
+
 <?php
 }
 }
