@@ -3,13 +3,6 @@ $pagename = "New Topic";
 session_start();
 require("includes/config.php");
 require("includes/functions.php");
-/* $dbhost = "localhost";
-  $dbuser = "root";
-  $dbpassword = "";
-  $dbdatabase = "testforum";
-  $db = mysql_connect($dbhost, $dbuser, $dbpassword);
-  mysql_select_db($dbdatabase, $db); */
-
 $forchecksql = "SELECT * FROM forums;";
 $forcheckresult = mysqli_query($dbc, $forchecksql);
 $forchecknumrows = mysqli_num_rows($forcheckresult);
@@ -28,7 +21,6 @@ if (isset($_GET['id']) == TRUE) {
 } else {
     $validforum = 0;
 }
-
 if (!isset($_SESSION['USERNAME'])) {
     header("Location: " . $config_basedir . "/login.php?ref=newpost&id=" . $validforum);
 } else {
@@ -39,9 +31,7 @@ if (!isset($_SESSION['USERNAME'])) {
             $topicsql = "INSERT INTO topics(date, user_id, forum_id, subject) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . $validforum . ", '" . $_POST['subject'] . "');";
         }
         mysqli_query($dbc, $topicsql) or die(mysqli_error($dbc));
-        //$topicid = mysqli_insert_id();
         $topicid = mysqli_insert_id($dbc);
-        //  echo"$topicid.dadadadad";
         $messagesql = "INSERT INTO messages(date, user_id, topic_id, subject, body) VALUES(NOW(), " . $_SESSION['USERID'] . ", " . mysqli_insert_id($dbc) . ", '" . $_POST['subject'] . "', '" . $_POST['body'] . "');";
         mysqli_query($dbc, $messagesql)or die(mysqli_error($dbc));
         header("Location: " . $config_basedir . "/viewmessages.php?id=" . $topicid);
@@ -56,10 +46,7 @@ if (!isset($_SESSION['USERNAME'])) {
         echo "<h2>Post a new message</h2>";
     }
     ?>
-
-    
-    <form action="newtopic.php"
-          method="post">
+    <form action="newtopic.php"  method="post">
         <table>
     <?php
     if ($validforum == 0) {

@@ -1,11 +1,8 @@
-
 <?php
 $pagename = "Reply";
-
 session_start();
 require("includes/config.php");
 require("includes/functions.php");
-
 if (isset($_POST['submit'])) {
 
     $messagesql = "INSERT INTO messages(`date`, `user_id`, `topic_id`, `subject`, `body`) "
@@ -14,8 +11,6 @@ if (isset($_POST['submit'])) {
     mysqli_query($dbc, $messagesql) or die(mysqli_error($dbc));
     header("Location: " . $config_basedir . "/viewmessages.php?id=" . $_POST['id']);
 }
-
-
 require("includes/header.php");
 require ("includes/inner-top.php");
 ?>
@@ -45,7 +40,6 @@ require ("includes/inner-top.php");
         </table>
     </form>
 </html>
-
 <?php
 require ("includes/inner-bottom.php");
 require("includes/footer.php");

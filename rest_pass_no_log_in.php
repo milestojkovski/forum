@@ -1,10 +1,8 @@
 <?php
 $pagename = "pasword resseting";
-
 require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
-
 error_reporting(0);
 if ($_POST['submit'] == 'Send') {
 //keep it inside

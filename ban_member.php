@@ -6,20 +6,14 @@ $pagename = "Ban Member";
 require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
-
-
 if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { // From members.php
 	$id = $_GET['id'];
 } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) { // Form submission.
 	$id = $_POST['id'];
 } else { // No valid ID, kill the script.
 	echo '<p class="error">This page has been accessed in error.</p>';
-	//include ('includes/footer.php'); 
 	exit();
 }
-
-//$id = urldecode($_GET['id']);
-
 // Check if the form has been submitted:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -60,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                       
 		
 		// Create the form:
-		echo '<form action="ban_member.php" method="post">
+  echo '<form action="ban_member.php" method="post">
 	<input type="radio" name="sure" value="Yes" /> Yes 
 	<input type="radio" name="sure" value="No" checked="checked" /> No
 	<input type="submit" name="submit" value="Submit" />
@@ -72,8 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 } // End of the main submission conditional.
-
-		
 
 require ("includes/inner-bottom.php");
 require("includes/footer.php");

@@ -1,24 +1,26 @@
-<script type="text/javascript" src="jquery-2.1.1.js" charset="utf-8"></script>
-<script> $("#image_id").click(function () {
-        var url = $(this).attr('target', '_blank');
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
-        window.open(url, "height=300,width=400");
-        return false;
-    });
-</script>
+        <script>
+            $(document).ready(function () {
+                $("#PicPolicy").click(function () {
+                    alert("3MB the most you can upload. \n\
+supports: pjpeg,jpeg,JPG,X-PNG, PNG, png, x-png");
+                });
+            });
+        </script>
+    </head>
 <?php
 session_start();
 $pagename = "Personal profile";
 require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
-
-
 if (isset($_POST['submit'])) {
 
     // Check for an uploaded file:
     if (isset($_FILES['upload'])) {
-
         // Validate the type. Should be JPEG or PNG.
         $allowed = array('image/pjpeg', 'image/jpeg', 'image/JPG', 'image/X-PNG', 'image/PNG', 'image/png', 'image/x-png');
         if (in_array($_FILES['upload']['type'], $allowed)) {
@@ -27,7 +29,6 @@ if (isset($_POST['submit'])) {
             // Move the file over.
             if (move_uploaded_file($_FILES['upload']['tmp_name'], "../uploads/{$file_name}.jpg")) {
                 $q = mysqli_query($dbc, "UPDATE users SET img = '" . $file_name . ".jpg" . "' WHERE username = '" . $_SESSION['USERNAME'] . "'"); // or die (mysqli_error_list($dbc));
-                //just for testing when the trigger was not working     //$dane = mysqli_query($dbc, "UPDATE messages SET img = '".$_FILES['upload']['name']."' WHERE username = '".$_SESSION['USERNAME']."'");
                 echo '<p><em>your profile pic has been changed!</em></p>';
             } // End of move... IF.
         } else { // Invalid type.
@@ -73,19 +74,9 @@ if (isset($_POST['submit'])) {
         unlink($_FILES['upload']['tmp_name']);
     }
 } // End of the submitted conditional.
-//
-//
 ?>
-
-
 <html>
-    <head>
-
-    </head>
     <body>
-
-
-
 <?php
 $q = mysqli_query($dbc, "SELECT * FROM users WHERE id={$_SESSION['USERID']}");
 while ($row = mysqli_fetch_assoc($q)) {
@@ -93,41 +84,32 @@ while ($row = mysqli_fetch_assoc($q)) {
     if ($row['img'] == NULL) {
         echo "<img width='100' height='100' src='../uploads/default.jpg' alt='Default Profile Pic'>";
     } else {
-        echo "<img id=\"image_id\" width='100' height='150' src='../uploads/" . $row['img'] . "' alt='Profile Pic'>";
+        echo "<img width='100' height='150' src='../uploads/" . $row['img'] . "' alt='Profile Pic'>";
     }echo "<br>";
-    echo "Your Username is: " . $row['username'] . "<br>";
-    echo "Your Email is: " . $row['email'] . "<br>";
-    //echo" important important impoertaaaaaa           ".$_SESSION['USERIMG'];
+    echo "Your Username is:<b> " . $row['username'] . "</b><br>";
+    echo "Your Email is: <b>" . $row['email'] . "</b><br>";
+    echo "User since: <b>" . $row['registration_date'] . "<b/><br>";
+
     echo "<br>";
 }
 ?>
         <form action="" method="post" enctype="multipart/form-data">
             <table>                 
-
                 <tr>
-                    <td>Please chose photo for your profile picture</td>
+                    <td>Please chose photo for your profile picture  <p id="PicPolicy">Click here for picture policy</p></td>
+                    <input type="hidden" name="MAX_FILE_SIZE" value="3145728" />
+                    <!-- 3MB the most you can upload-->
+            </tr>
                     <td><input type="file" name="upload"></td>
+                    
+            
+            <tr>
                     <td> <input type="submit" name="submit" value="Submit!"></td>
                 </tr>
-
-
-                <!--
-                
-                
-                <tr>
-                <td>Submit</td>
-                <td> <input type="submit" name="submit" value="Submit!"></td>
-                </tr> -->
-
-
                 <tr>
                     <td>For new password
                         <a href="rest_pass.php">click here </a></td>
                 </tr>
-
-
-
-
             </table>
         </form>
     </body>

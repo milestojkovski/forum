@@ -6,8 +6,6 @@ $pagename = "Un ban Member";
 require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
-
-
 if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { // From members.php
 	$id = $_GET['id'];
 } elseif ( (isset($_POST['id'])) && (is_numeric($_POST['id'])) ) { // Form submission.
@@ -17,9 +15,6 @@ if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { // From members.php
 	//include ('includes/footer.php'); 
 	exit();
 }
-
-//$id = urldecode($_GET['id']);
-
 // Check if the form has been submitted:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -43,22 +38,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 } else { // Show the form.
-
 	// Retrieve the member's information:
 	$q = "SELECT username, email FROM users WHERE id=$id";
 	$r = @mysqli_query ($dbc, $q);
-
 	if (mysqli_num_rows($r) == 1) { // Valid memeber ID, show the form.
-
 		// Get the members's information:
 		$row = mysqli_fetch_array ($r, MYSQLI_NUM);
-		
 		// Display the record being deleted:
 		echo "<h3>Name: $row[0] <br></h3>
                       <h3> Email: $row[1]</h3>
-		Are you sure you want to un bann this member?";
-                      
-		
+		Are you sure you want to un bann this member?";                   	
 		// Create the form:
 		echo '<form action="unban_member.php" method="post">
 	<input type="radio" name="sure" value="Yes" /> Yes 
@@ -72,9 +61,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 } // End of the main submission conditional.
-
-		
-
 require ("includes/inner-bottom.php");
 require("includes/footer.php");
 ?>

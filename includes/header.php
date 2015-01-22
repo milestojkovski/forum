@@ -2,32 +2,26 @@
 if (!isset($_SESSION)) {
     session_start();
 }
-/* session_start();
-  $_SESSION = array();
-  session_destroy(); */
 require ("config.php");
-//$db = mysql_connect($dbhost, $dbuser, $dbpassword);
-//mysql_select_db($dbdatabase, $db);
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <meta http-equiv="Content-Style-Type" content="text/css">
-        <!--<title>
+        <title>
         <?php
         echo $config_forumsname;
         ?>
         
-        </title>-->
+        </title>
         <title>Discussion Forum</title>
         <link rel="stylesheet" href="css/style.css" type="text/css" />
 
     </head>
     <body>
 
-        <a name="top"></a>
-
+        
+<!-- this is the main table below the navigation-->
         <table width="770" height="100%" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="ffffff">
             <tr valign="top">
 

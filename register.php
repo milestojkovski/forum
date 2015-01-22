@@ -6,20 +6,17 @@
             $(document).ready(function () {
                 $("#PassPolicy").click(function () {
                     alert("Password must be at least 4 characters. \n\
-No more than 8 characters. \n\
+No more than 20 characters. \n\
 Must include at least one upper case letter, one lower case letter.\n\
 At least one numeric digit");
                 });
             });
         </script>
     </head>
-
     <?php
     $pagename = "Register";
     session_start();
     require("includes/config.php");
-//$db = mysql_connect($dbhost, $dbuser, $dbpassword);
-//mysql_select_db($dbdatabase, $db);
     if (isset($_POST["submit"])) {
         if ($_POST["password1"] == $_POST["password2"]) {
             $checksql = "SELECT * FROM users WHERE username = '" . $_POST["username"] . "';";
@@ -43,7 +40,6 @@ At least one numeric digit");
                 } else {
                     $un = mysqli_real_escape_string($dbc, trim($_POST['username']));
                 }
-
                 // Check for an email address:
                 if (empty($_POST['email'])) {
                     $errors[] = 'You forgot to enter your email address.';
@@ -51,8 +47,6 @@ At least one numeric digit");
                     $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
                     // $e = $_POST['email'];
                 }
-
-
                 // Check for a password and match against the confirmed password:
                 if (!empty($_POST['password1'])) {
                     if ($_POST['password1'] != $_POST['password2']) {
@@ -61,7 +55,7 @@ At least one numeric digit");
                         $pa = mysqli_real_escape_string($dbc, trim($_POST['password1']));
                     }
 
-                    if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,8}$/', $pa)) {
+                    if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/', $pa)) {
                         $p = $pa;
                     } else {
                         $errors[] = 'You password doesnt meet the password policy.';
@@ -73,7 +67,6 @@ At least one numeric digit");
                 }
 
                 if (empty($errors)) { // If everything's OK.
-//if ($_POST['username'] && $_POST['password1'] && $_POST['password2'] && $_POST['email']) {
                     $sql = "INSERT INTO users(username, password, email, verifystring, active, registration_date) VALUES( '$un'  ,  SHA1('$p')  ,  '$e'  , '" . addslashes($randomstring) . "', 0, NOW());";
                    // insert the valus for the user
                     mysqli_query($dbc, $sql) or die(mysqli_error($dbc));
@@ -120,8 +113,6 @@ At least one numeric digit");
             }
         }
         ?>
-
-
         <form action="register.php" method="POST">
             <table>
                 <tr>
@@ -146,9 +137,6 @@ At least one numeric digit");
                     <td><input type="submit"
                                name="submit" value="Register!"></td>
                 </tr>
-
-
-
             </table>
             <p> NOTE: Please make sure your email is correct since you are supposed to get activation link. </p>
         </form>

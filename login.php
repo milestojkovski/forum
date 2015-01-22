@@ -3,22 +3,16 @@ if (!isset($_SESSION)) {
     session_start();
 }
 $pagename = "Login";
-//session_start(); it has been already stared somewhere
 require("includes/config.php");
 require("includes/functions.php");
-//$db = mysql_connect($dbhost, $dbuser, $dbpassword);
-//mysql_select_db($dbdatabase, $db);
-
 if (isset($_POST['submit'])) {
-    $password = mysql_real_escape_string(sha1($_POST['password']));                              //$_POST['password']
-    ///////echo"$password";
+    $password = mysql_real_escape_string(sha1($_POST['password']));                              
     $sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "' AND password = '" . $password . "';";
     $result = mysqli_query($dbc, $sql);
     $numrows = mysqli_num_rows($result);
     if ($numrows == 1) {
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        /*if ($row['ban']==1){ echo '<p class="errorban">you have been banned.</p>';}
-        else*/if ($row['active'] == 1 && $row['ban']==0) {
+        if ($row['active'] == 1 && $row['ban']==0) {
             
             $_SESSION['USERNAME'] = $row['username'];
             $_SESSION['USERID'] = $row['id'];
@@ -52,7 +46,7 @@ if (isset($_POST['submit'])) {
 }
 require("includes/header.php");
 require ("includes/inner-top.php");
-if (isset($_POST['submit'])) {                                                                  //$_POST['password']
+if (isset($_POST['submit'])) {                                                                  
     $sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "' AND password = '" . $password . "';";
     $result = mysqli_query($dbc, $sql);
     $numrows = mysqli_num_rows($result);
@@ -72,8 +66,7 @@ if (isset($_POST['submit'])) {                                                  
 }
 ?>
 
-<form action="login.php"
-      method="POST">
+<form action="login.php" method="POST">
     <table>
         <tr>
             <td>Username</td>

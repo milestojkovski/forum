@@ -18,10 +18,6 @@ if ( (isset($_GET['id'])) && (is_numeric($_GET['id'])) ) { // From members.php
 	exit();
 }
 
-
-
-//$id= urldecode($_GET['id']);
-
 // Check if the form has been submitted:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -62,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         . "This acttion <b> CAN NOT </b> be undone!";
 		
 		// Create the form:
-		echo '<form action="delete_member.php" method="post">
+  echo '<form action="delete_member.php" method="post">
 	<input type="radio" name="sure" value="Yes" /> Yes 
 	<input type="radio" name="sure" value="No" checked="checked" /> No
 	<input type="submit" name="submit" value="Submit" />
@@ -74,8 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 
 } // End of the main submission conditional.
-
-		
 
 require ("includes/inner-bottom.php");
 require("includes/footer.php");

@@ -1,5 +1,3 @@
-
-
 <?php
 session_start();
 $pagename = "change your password";
@@ -9,7 +7,6 @@ require ("includes/inner-top.php");
 //  THIS IS WHEN THE USER IS LOGED IN
 // Check for form submission:
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     $errors = array(); // Initialize an error array.
     // Check for the current password:
     if (empty($_POST['pass'])) {
@@ -17,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $p = mysqli_real_escape_string($dbc, trim($_POST['pass']));
     }
-
     // Check for a new password and match 
     // against the confirmed password:
     if (!empty($_POST['pass1'])) {
@@ -30,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors[] = 'You forgot to enter your new password.';
     }
     $us = $_SESSION['USERNAME'];
-
     if (empty($errors)) { // If everything's OK.
         // Check that they've entered the right email address/password combination:
         $q = "SELECT id FROM users WHERE (username='$us' AND password=SHA1('$p') )";
@@ -56,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Debugging message:
                 echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
             }
-
             mysqli_close($dbc); // Close the database connection.
             // Include the footer and quit the script (to not show the form).
             //include ('includes/footer.html'); 
@@ -73,7 +67,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         echo '</p><p>Please try again.</p><p><br /></p>';
     } // End of if (empty($errors)) IF.
-
     mysqli_close($dbc); // Close the database connection.
 } // End of the main Submit conditional.
 ?>

@@ -66,7 +66,6 @@ if (isset($_SESSION['ADMIN'])OR $_SESSION['USERNAME']) {
     </tr>
 </table>
 <?php
-//}
 require ("includes/inner-bottom.php");
 require("includes/footer.php");
 ?>

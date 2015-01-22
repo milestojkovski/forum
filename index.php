@@ -11,10 +11,6 @@
     }(document, 'script', 'facebook-jssdk'));</script>
 <?php
 require("includes/header.php");
-
-//session_start();
-//$catsql = "SELECT * FROM categories;";
-//$catresult = mysql_query($catsql);
 ?>
 
 <table>
@@ -25,6 +21,7 @@ require("includes/header.php");
                 <a href='newtopic.php'>Start new topic</a> </span></td>
     </tr>
 </table>
+<!-- this is the main table on index page where the categoris and forums are displayed-->
 <table width="100%" cellpadding="2" cellspacing="1" border="0" class="forumline">
     <tr>
         <th class="thCornerL" height="25" nowrap="nowrap">&nbsp;Forum&nbsp;</th>
@@ -44,10 +41,8 @@ require("includes/header.php");
         echo "
   <tr>
 	<td class=\"catLeft\" colspan=\"2\" height=\"28\"><span class=\"cattitle\">";
-        if (isset($_SESSION['ADMIN'])) {
-            //echo "[<a href='delete.php?func=cat&id=" . $catrow['id'] . "'>X</a>] - "; // DELETED CATEGORY 
+        if (isset($_SESSION['ADMIN'])) { 
             echo "[<a href=\"delete.php?func=cat&id={$catrow['id']}\">X</a>] - "; // DELETED CATEGORY 
-            // echo "<a href=\"userprofile.php?userID={$quer['userID']}\">User</a>";
         }
         echo "<span class=\"cattitle\">$catrow[name]</span></span></td>
   </tr>";
@@ -72,8 +67,6 @@ require("includes/header.php");
                 if (isset($_SESSION['ADMIN'])) {
 
                     echo "<small>[<a href=\"delete.php?func=forum&id={$forumrow['id']}\">X</a>] - </small>"; // DELETES FORUM. (under category)
-// original echo "<small>[<a href='delete.php?func=forum&id=" . $forumrow['id'] . "'>X</a>] - </small>"; // DELETES FORUM
-                    // echo "<a href=\"userprofile.php?userID={$quer['userID']}\">User</a>";
                 }
                 echo "<span class=\"forumlink\"><a class=\"forumlink\" href='viewforum.php?id=" . $forumrow['id'] . "'>" . $forumrow['name'] . "</a><br />
 	  </span> <span class=\"genmed\">$forumrow[description]<br />
