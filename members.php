@@ -44,7 +44,6 @@ if (isset($_GET['s']) && is_numeric($_GET['s'])) {
 // Determine the sort...
 // Default is by registration date.
 $sort = (isset($_GET['sort'])) ? $_GET['sort'] : 'rd';
-//DESC
 // Determine the sorting order:
 switch ($sort) {
 	
@@ -65,17 +64,20 @@ switch ($sort) {
 }
 	
 // Define the query:
-$q = "SELECT username, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, email, id FROM users ORDER BY $order_by LIMIT $start, $display";		
+$q = "SELECT username, DATE_FORMAT(registration_date, '%M %d, %Y') AS dr, email, id, ban FROM users ORDER BY $order_by LIMIT $start, $display";		
 $r = @mysqli_query ($dbc, $q); // Run the query.
 
 // Table header:
-echo '<table align="center" cellspacing="0" cellpadding="5" width="75%">
+echo '<table width=\"100%\" align="center" cellspacing="0" cellpadding="5" width="75%">
 <tr>
 	
 	<td align="left"><b><a href="members.php?sort=us">Username</a></b></td>
 	<td align="left"><b><a href="members.php?sort=em">Email</a></b></td>
 	<td align="left"><b><a href="members.php?sort=rd">Date Registered</a></b></td>
         <td align="left"><b>Delete</b></td>
+        
+
+        
 </tr>
 ';
 
@@ -83,15 +85,17 @@ echo '<table align="center" cellspacing="0" cellpadding="5" width="75%">
 $bg = '#eeeeee'; 
 while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // to be done.
 	$bg = ($bg=='#00CC00' ? '#fffff' : '#00CC00');
-		echo '<tr>
+		echo '<tr bgcolor="' . $bg . '">
                     
-                    <font color="' . $bg . '">s
 		<td align="left">' . $row['username'] . '</td>
 		<td align="left">' . $row['email'] . '</td>
 		<td align="left">' . $row['dr'] . '</td>
 		<td align="left"><a href="delete_member.php?id=' . $row['id'] . '">Delete</a></td>
-		<td align="left"><a href="ban_member.php?id=' . $row['id'] . '">Ban</a></td>
-                <td align="left"><a href="unban_member.php?id=' . $row['id'] . '">Un Ban</a></td>
+                    ';
+               if ($row['ban']==0){echo'<td align="left"><a href="ban_member.php?id=' . $row['id'] . '">Ban</a></td>';}
+               if ($row['ban']==1){echo'<td align="left"><a href="unban_member.php?id=' . $row['id'] . '">Un Ban</a></td>';}
+                echo'
+                
 
 </font>
 		
