@@ -17,6 +17,7 @@ $pagename = "Personal profile";
 require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
+require ("includes/functions.php");
 if (isset($_POST['submit'])) {
 
     // Check for an uploaded file:
@@ -88,7 +89,8 @@ while ($row = mysqli_fetch_assoc($q)) {
     }echo "<br>";
     echo "Your Username is:<b> " . $row['username'] . "</b><br>";
     echo "Your Email is: <b>" . $row['email'] . "</b><br>";
-    echo "User since: <b>" . $row['registration_date'] . "<b/><br>";
+    echo "User since: <b>" . $row['registration_date'] . "</b><br>";
+    NumberOfForumsOpened(); // function that is in includes/functions.php that counts how many forums the user has opened.
 
     echo "<br>";
 }

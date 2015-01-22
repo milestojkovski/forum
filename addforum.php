@@ -5,17 +5,10 @@ include("includes/config.php");
 require("includes/functions.php");
 require("includes/header.php");
     require ("includes/inner-top.php");
-/* $dbhost = "localhost";
-  $dbuser = "root";
-  $dbpassword = "";
-  $dbdatabase = "testforum";
-  $db = mysql_connect($dbhost, $dbuser, $dbpassword);
-  mysql_select_db($dbdatabase, $db); */
 
 if (isset($_SESSION['ADMIN'])OR $_SESSION['USERNAME']) {
-    //header("Location: " . $config_basedir . "/admin.php?ref=add");
   if (isset($_POST['submit'])) {
-    $topicsql = "INSERT INTO forums(cat_id, name, description) VALUES(" . $_POST['cat'] . ", '" . $_POST['name'] . "', '" . $_POST['description'] . "');";
+    $topicsql = "INSERT INTO forums(opener, cat_id, name, description) VALUES(" . $_SESSION['USERID'] . "," . $_POST['cat'] . ", '" . $_POST['name'] . "', '" . $_POST['description'] . "');";
     mysqli_query($dbc, $topicsql) or die(mysqli_error($dbc));
     header("Location: " . $config_basedir);
 } }

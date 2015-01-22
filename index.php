@@ -10,6 +10,7 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 <?php
+$config_forumsname = "Discussion Forum";
 require("includes/header.php");
 ?>
 
