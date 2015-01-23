@@ -91,21 +91,22 @@ a.nav			{ text-decoration: none; color : #006699; }
 a.nav:hover		{ text-decoration: underline; }
 
 
+
+.name			{ font-size : 11px; color : #000000;}
+
+.postdetails		{ font-size : 12px; color : #000000; }
+/*
+
 .topictitle			{ font-weight: bold; font-size: 11px; color : #000000; }
 a.topictitle:link   { text-decoration: none; color : #006699; }
 a.topictitle:visited { text-decoration: none; color : #5493B4; }
 a.topictitle:hover	{ text-decoration: underline; color : #DD6900; }
 
-
-.name			{ font-size : 11px; color : #000000;}
-
-.postdetails		{ font-size : 12px; color : #000000; }
-
-
-/*.postbody { font-size : 12px; color: red; display:flex}*/
+.postbody { font-size : 12px; color: red; display:flex}
 a.postlink:link	{ text-decoration: none; color : #006699 }
 a.postlink:visited { text-decoration: none; color : #5493B4; }
 a.postlink:hover { text-decoration: underline; color : #DD6900}
+
 
 
 .code {
@@ -125,7 +126,7 @@ a.postlink:hover { text-decoration: underline; color : #DD6900}
 a.copyright		{ color: #444444; text-decoration: none;}
 a.copyright:hover { color: #000000; text-decoration: underline;}
 
-
+*/
 input,textarea, select {
 	color : #000000;
 	font: normal 11px Verdana, Arial, Helvetica, sans-serif;
@@ -153,8 +154,8 @@ input.liteoption {
 	background-color : #FAFAFA;
 	font-weight : normal;
 }
-
-.helpline { background-color: #DEE3E7; border-style: none; }
+/*
+.helpline { background-color: #DEE3E7; border-style: none; }*/
 
 
 	// @import url('/css/styles.css');
@@ -179,13 +180,13 @@ border-bottom-width : 1px;
 border-left-width : 1px;  
 }
 
-
+/*
 .postbody { line-height: 5px;
      
     display:block;
 
 
-}
+}*/
 
 
 
@@ -239,6 +240,7 @@ a.sgfooter:hover, a.sgfooter:active {
        
 	
 }
+/*
 .message
 {
 	-moz-border-radius:20px;
@@ -251,7 +253,7 @@ a.sgfooter:hover, a.sgfooter:active {
 	text-align:center;
 	font-weight:bold;
 	margin-top:20px;
-}
+}*/
 .messages_table 
 {
 	width: 80%

@@ -12,4 +12,7 @@ $r=  mysqli_fetch_array($q);
 echo"<b> {$_SESSION['USERNAME']}, you have opened $r[0] forum(s) so far</b>";
   
 }
+
+
+
 ?>

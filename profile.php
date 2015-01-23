@@ -1,7 +1,6 @@
 <html>
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
         <script>
             $(document).ready(function () {
                 $("#PicPolicy").click(function () {
@@ -10,6 +9,10 @@ supports: pjpeg,jpeg,JPG,X-PNG, PNG, png, x-png");
                 });
             });
         </script>
+        <script type="text/javascript" src="jquery.min.js"></script>
+
+
+
     </head>
 <?php
 session_start();
@@ -91,7 +94,9 @@ while ($row = mysqli_fetch_assoc($q)) {
     echo "Your Email is: <b>" . $row['email'] . "</b><br>";
     echo "User since: <b>" . $row['registration_date'] . "</b><br>";
     NumberOfForumsOpened(); // function that is in includes/functions.php that counts how many forums the user has opened.
-
+?>
+        <a href="ListOfForumsOpened.php">Click for list!</a>
+    <?php
     echo "<br><br>";
 }
 ?>

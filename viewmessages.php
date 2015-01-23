@@ -78,11 +78,14 @@ $topicrow = mysqli_fetch_array($topicresult, MYSQLI_ASSOC);
 ";
             }
             echo "</table>"
+            
             ?>
+            
         </td>
     </tr>
+    
 </table>
-
+<a href="#top">Go to top</a>
 <?php
 require("includes/footer.php");
 ?>

@@ -2,8 +2,6 @@
 $pagename = "Add Category";
 session_start();
 require("includes/config.php");
-require("includes/functions.php");
-
 if (!isset($_SESSION['ADMIN'])) {
     header("Location: " . $config_basedir);
 } elseif (isset($_POST['submit'])) {

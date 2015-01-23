@@ -1,5 +1,4 @@
-<div align="center"><span class="copyright"><br /><br />
-</div>
+<br>
 <table cellpadding="0" cellspacing="0" border="0" align="center">
 
     <tr>
@@ -12,7 +11,10 @@
     <tr>
         <td align="center">
             <p class="sgfooter_bg">
-                Developed by Mile Stojkovski<br>
+                Developed by Mile Stojkovski
+                <br>
+                <br>
+                <br>
             </p>
         </td>
     </tr>

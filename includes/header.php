@@ -5,7 +5,12 @@ if (!isset($_SESSION)) {
 require ("config.php");
 ?>
 <html>
-    <head>
+    
+    <head>       
+        <!--this is the icon that appears in the tab. but it doesnt work properly on chrome-->
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"> 
+        
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
         <meta http-equiv="Content-Style-Type" content="text/css">
         <title>
@@ -20,7 +25,7 @@ require ("config.php");
     </head>
     <body>
 
-        
+
 <!-- this is the main table below the navigation-->
         <table width="770" height="100%" cellpadding="0" cellspacing="0" border="0" align="center" bgcolor="ffffff">
             <tr valign="top">
@@ -48,7 +53,7 @@ require ("config.php");
                                         if (isset($_SESSION['USERNAME'])) {
                                             if (isset($_SESSION['ADMIN'])) {
                                                 echo "<td><a href='addcat.php' class='mainmenu'>New Category</a></td>";
-                                                echo "<td><a href='members.php' class='mainmenu'> Members </a></td>";
+                                                echo "<td><a href='members.php' class='mainmenu'>List of Members</a></td>";
                                             }
                                             echo "<td><a href='addforum.php' class='mainmenu'>New Forum</a></td>";
                                             echo "<td><a href='newtopic.php' class='mainmenu'>New Topic</a></td>";

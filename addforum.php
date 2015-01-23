@@ -2,9 +2,8 @@
 $pagename = "Add Forum";
 session_start();
 include("includes/config.php");
-require("includes/functions.php");
 require("includes/header.php");
-    require ("includes/inner-top.php");
+require ("includes/inner-top.php");
 
 if (isset($_SESSION['ADMIN'])OR $_SESSION['USERNAME']) {
   if (isset($_POST['submit'])) {
