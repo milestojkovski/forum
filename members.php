@@ -5,11 +5,8 @@ require("includes/config.php");
 require("includes/header.php");
 require ("includes/inner-top.php");
 
-
-
 // This script retrieves all the records from the users table.
 // This new version allows the results to be sorted in different ways.
-
 
 
 // Number of records to show per page:
@@ -24,7 +21,7 @@ if (isset($_GET['p']) && is_numeric($_GET['p'])) { // Already been determined.
 	$r = @mysqli_query ($dbc, $q);
 	$row = @mysqli_fetch_array ($r, MYSQLI_NUM);
 	$records = $row[0];
-	        echo"There are $row[0] users registered.";
+	        echo"<br>There are <b>$row[0]</b> users registered.<br><br>";
 
 	// Calculate the number of pages...
 	if ($records > $display) { // More than 1 page.
@@ -97,7 +94,7 @@ while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) { // to be done.
                 echo'
                 
 
-</font>
+
 		
 	</tr>
 	';

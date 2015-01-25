@@ -1,8 +1,8 @@
 <?php
 include("includes/config.php");
 include("includes/functions.php");
-if (isset($_GET['id']) == TRUE) {
-    if (is_numeric($_GET['id']) == FALSE) {
+if (isset($_GET['id'])) {
+    if (!is_numeric($_GET['id'])) {
         header("Location: " . $config_basedir);
     }
     $validforum = $_GET['id'];
@@ -10,7 +10,6 @@ if (isset($_GET['id']) == TRUE) {
 } else {
     header("Location: " . $config_basedir);
 }
-
 require("includes/header.php");
 ?>
 <table width="100%" cellspacing="0" cellpadding="10" border="0" align="center">
@@ -53,10 +52,8 @@ require("includes/header.php");
                     $topicsql = "SELECT MAX( messages.date ) AS maxdate, topics.id AS topicid, topics.*, users.*
 FROM messages, topics, users WHERE messages.topic_id = topics.id AND topics.user_id = users.id
 AND topics.forum_id = " . $validforum . " GROUP BY messages.topic_id ORDER BY maxdate DESC;";
-
                     $topicresult = mysqli_query($dbc, $topicsql);
                     $topicnumrows = mysqli_num_rows($topicresult);
-
                     if ($topicnumrows > 0) {
                         while ($topicrow = mysqli_fetch_array($topicresult)) {
                             //while($topicrow = mysql_fetch_assoc($topicresult)) {
@@ -64,14 +61,11 @@ AND topics.forum_id = " . $validforum . " GROUP BY messages.topic_id ORDER BY ma
                             $msgresult = mysqli_query($dbc, $msgsql);
                             $msgnumrows = mysqli_num_rows($msgresult);
                             $NUMOFREPLIES = $msgnumrows - 1; // so it doesnt mix the number of rows with number of reply. with #of rows it displays the post itself as reply. 
-
                             echo "<tr>";
                             echo "<td style=\"background: #EFEFEF\">";
-
                             if (isset($_SESSION['ADMIN'])) {
                                 echo "[<a href=\"delete.php?func=thread&id={$topicrow['topicid']}\".\"?forum={$validforum}\">X</a>] - "; //deletes topic inside forum
                             }
-
                             echo "<strong><a style=\"text-decoration: none;\" href='viewmessages.php?id=" . $topicrow['topicid'] . "'>" . $topicrow['subject'] . "</a></strong></td>";
                             echo "<td style=\"background: #DEE3E7\">" . $NUMOFREPLIES . "</td>";
                             echo "<td style=\"background: #DEE3E7\">" . $topicrow['username'] . "</td>";

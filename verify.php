@@ -10,8 +10,6 @@ $result = mysqli_query($dbc, $sql) or die(mysqli_error($dbc));
 $numrows = mysqli_num_rows($result);
 if ($numrows == 1) {
     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-//$forumrow = mysqli_fetch_array($forumresult, MYSQLI_ASSOC); 
-//
     $sql = "UPDATE users SET active = '1' WHERE id = " . $row['id'];
     $result = mysqli_query($dbc, $sql) or die(mysqli_error($dbc));
     echo "Your account has now been verified. You can now <a href='login.php'>log in</a>";

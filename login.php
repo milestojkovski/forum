@@ -50,18 +50,19 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM users WHERE username = '" . $_POST['username'] . "' AND password = '" . $password . "';";
     $result = mysqli_query($dbc, $sql);
     $numrows = mysqli_num_rows($result);
-    if($row['ban']==1){
-        echo"<p><font color=\"red\">You have been banned</font></p>";
+    //if($row['ban']==1){
+     if ((isset ($row['ban'])) AND $row['ban']==1){ // it has to be declared like this since when you misstyped the email/addres it throwd error unassigned value
+        echo"<p class='error'><small>You have been banned</small></p>";
         
     }
     if ($numrows == 1 && $row['active'] != 1) {
-        echo "<p><small><font color=\"red\">This account is not verified yet. You were emailed a link
+        echo "<p class='error'><small>This account is not verified yet. You were emailed a link
 			to verify the account. Please click on the link in the email to
-			continue.</font></small></p>";
+			continue.</small></p>";
     }
 
     if ($result && $numrows != 1) {
-        echo "<p><small><font color=\"red\">Incorrect login, please try again!</font></small></p>";
+        echo "<p class='error'><small>Incorrect login, please try again!</small></p>";
     }
 }
 ?>

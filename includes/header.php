@@ -75,7 +75,7 @@ require ("config.php");
                                             . "&nbsp;"
                                             . "&nbsp;"
                                             . "&nbsp;</td>";
-                                            echo "<td> <small>Currently logged in as:</small><a href=profile.php> {$_SESSION['USERNAME']}</a></td>";
+                                            echo "<td> <small>Currently logged in as:</small><a href=profile.php>{$_SESSION['USERNAME']}</a></td>";
                                             echo "<td><a href='logout.php' class='mainmenu'>Logout</a></td>";
                                         }
                                         ?>

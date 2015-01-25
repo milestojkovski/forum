@@ -9,7 +9,7 @@ $forchecknumrows = mysqli_num_rows($forcheckresult);
 if ($forchecknumrows == 0) {
     header("Location: " . $config_basedir);
 }
-if (isset($_GET['id']) == TRUE) {
+if (isset($_GET['id'])) {
     if (!is_numeric($_GET['id'])) {
         $error = 1;
     }
