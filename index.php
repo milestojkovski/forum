@@ -36,7 +36,7 @@ require("includes/header.php");
 
 
     echo mysql_error();
-//while($catrow = mysql_fetch_assoc($catresult)) {
+
     while ($catrow = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
 
         echo "
@@ -56,7 +56,7 @@ require("includes/header.php");
         if ($forumnumrows == 0) {
             echo "<tr><td>No forums!</td></tr>";
         } else {
-//while($forumrow = mysql_fetch_assoc($forumresult)) {
+
             while ($forumrow = mysqli_fetch_array($forumresult, MYSQLI_ASSOC)) {
 
                 $topicsql = "SELECT id FROM topics WHERE forum_id = " . $forumrow['id'];
