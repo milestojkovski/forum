@@ -59,10 +59,13 @@ At least one numeric digit");
                 
                $randomstring = ""; // it was giving me some notice that the variable was not defined. i tried with is set and did not worked.
 
-               for ($i = 0; $i < 16; $i++) {
+               /*for ($i = 0; $i < 16; $i++) {
                     
                    $randomstring .= chr(mt_rand(32, 126));
-                }
+                }*/
+               
+               
+               $randomstring = rand(10000, 99999);
                 $verifyurl = "$config_basedir/verify.php";
                 $verifystring = urlencode($randomstring);
                 $verifyemail = urlencode($_POST['email']);
