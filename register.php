@@ -26,20 +26,35 @@ At least one numeric digit");
                while($row =  mysqli_fetch_array($r))
                 {
                if (in_array($_POST['username'], $row)) {
-                        header("Location: " . $config_basedir . "/register.php?error=takenUsername");
+                        
                         $u="1";
-                }else $u="";
+                }
                };
                 $q="SELECT email FROM users";
                 $r= mysqli_query($dbc, $q) or die (mysqli_error($dbc));
                  while($row =  mysqli_fetch_array($r)){
                if (in_array($_POST['email'], $row)){
-                           header("Location: " . $config_basedir . "/register.php?error=takenEmail");
+                          
                            $e="1";
-               }else $e="";
+               }
                 };
             
-            if ($u!=="1" && $e!=="1"){ // i spent hours and hours figuring out that AND is not same as &&. NEVER use AND, OR. 
+            if ((isset ($u)) && ($u==1)) {header("Location: " . $config_basedir . "/register.php?error=takenUsername");
+                           exit();
+            header("Location:".$config_basedir/register.php." ");
+            }
+            elseif ((isset($e)) && ($e==1))  {header("Location: " . $config_basedir . "/register.php?error=takenEmail") ;
+                            exit();
+                        header("Location:".$config_basedir/register.php." ");
+            }
+            
+            elseif (   ((isset($u)) && ((isset($e))))   &&    (($u==1) && ($e==1))    ) {header("Location: " . $config_basedir . "/register.php?error=takenEmailUsernameTaken") ;
+                            exit();
+                        header("Location:".$config_basedir/register.php." ");
+            }
+                
+                
+                else{ // i spent hours and hours figuring out that AND is not same as &&. NEVER use AND, OR. 
            
                 
                $randomstring = ""; // it was giving me some notice that the variable was not defined. i tried with is set and did not worked.
@@ -118,20 +133,22 @@ At least one numeric digit");
         if (isset($_GET['error'])) {
             switch ($_GET['error']) {
                 case "pass":
-                    echo "Passwords do not match!";
+                    echo "Passwords do not match!<br>";
                     break;
                 case "takenUsername":
-                    echo "Username taken, please use another.";
+                    echo "Username taken, please use another.<br>";
                     break;
                 case "takenEmail":
-                    echo "email taken, please use another.";
+                    echo "<br>This email already is registered, please use anotherone.<br>";
                     break;
-                
+                case "takenEmailUsernameTaken":
+                    echo "<br>Both email and username are taken.<br>";
+                    break;
                 case "nopolicy":
-                    echo "Password doesnt meet pasword policy";
+                    echo "Password doesnt meet pasword policy.<br>";
                     break;
                 case "no":
-                    echo "Incorrect login details!";
+                    echo "Incorrect login details!<br>";
                     break;
             }
         }
