@@ -20,7 +20,7 @@ if (isset($_SESSION['ADMIN'])OR $_SESSION['USERNAME']) {
                 <form action="addforum.php" method="post">
                     <table>
     <?php
-    /* if ($validforum == 0){ */
+    
     $forumssql = "SELECT * FROM categories ORDER BY name;";
     $forumsresult = mysqli_query($dbc, $forumssql) or die(mysqli_error($dbc));
     ;

@@ -10,9 +10,6 @@ supports: pjpeg,jpeg,JPG,X-PNG, PNG, png, x-png");
             });
         </script>
         <script type="text/javascript" src="jquery.min.js"></script>
-
-
-
     </head>
 <?php
 session_start();
@@ -22,7 +19,6 @@ require("includes/header.php");
 require ("includes/inner-top.php");
 require ("includes/functions.php");
 if (isset($_POST['submit'])) {
-
     // Check for an uploaded file:
     if (isset($_FILES['upload'])) {
         // Validate the type. Should be JPEG or PNG.

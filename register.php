@@ -1,7 +1,6 @@
 <html>
     <head>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
         <script>
             $(document).ready(function () {
                 $("#PassPolicy").click(function () {
@@ -17,16 +16,36 @@ At least one numeric digit");
     $pagename = "Register";
     session_start();
     require("includes/config.php");
+    
     if (isset($_POST["submit"])) {
+        $c=1;
         if ($_POST["password1"] == $_POST["password2"]) {
-            $checksql = "SELECT * FROM users WHERE username = '" . $_POST["username"] . "';";
-            $checkresult = mysqli_query($dbc, $checksql);
-            $checknumrows = mysqli_num_rows($checkresult);
-            if ($checknumrows == 1) {
-                header("Location: " . $config_basedir . "/register.php?error=taken");
-            } else {
-                for ($i = 0; $i < 16; $i++) {
-                    //$randomstring .= chr(mt_rand(32,126));
+                
+            $q="SELECT username FROM users";
+                $r= mysqli_query($dbc, $q) or die (mysqli_error($dbc));
+               while($row =  mysqli_fetch_array($r))
+                {
+               if (in_array($_POST['username'], $row)) {
+                        header("Location: " . $config_basedir . "/register.php?error=takenUsername");
+                        $u="1";
+                }else $u="";
+               };
+                $q="SELECT email FROM users";
+                $r= mysqli_query($dbc, $q) or die (mysqli_error($dbc));
+                 while($row =  mysqli_fetch_array($r)){
+               if (in_array($_POST['email'], $row)){
+                           header("Location: " . $config_basedir . "/register.php?error=takenEmail");
+                           $e="1";
+               }else $e="";
+                };
+            
+            if ($u!=="1" && $e!=="1"){ // i spent hours and hours figuring out that AND is not same as &&. NEVER use AND, OR. 
+           
+                
+               $randomstring = ""; // it was giving me some notice that the variable was not defined. i tried with is set and did not worked.
+
+               for ($i = 0; $i < 16; $i++) {
+                    
                    $randomstring .= chr(mt_rand(32, 126));
                 }
                 $verifyurl = "$config_basedir/verify.php";
@@ -101,9 +120,13 @@ At least one numeric digit");
                 case "pass":
                     echo "Passwords do not match!";
                     break;
-                case "taken":
+                case "takenUsername":
                     echo "Username taken, please use another.";
                     break;
+                case "takenEmail":
+                    echo "email taken, please use another.";
+                    break;
+                
                 case "nopolicy":
                     echo "Password doesnt meet pasword policy";
                     break;
@@ -143,7 +166,7 @@ At least one numeric digit");
     </html>
 
     <?php
-}
+    }
 require ("includes/inner-bottom.php");
 require ("includes/footer.php");
 ?>

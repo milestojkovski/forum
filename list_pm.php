@@ -23,7 +23,7 @@ This is the list of your messages:<br />
 <table>
 	<tr>
     	<th class="title_cell">Title</th>
-        <th>Nb. Replies</th>
+        <th># of Replies</th>
         <th>Participant</th>
         <th>Date of creation</th>
     </tr>
@@ -36,7 +36,7 @@ while($dn1 = mysqli_fetch_array($req1))
     	<td class="left"><a href="read_pm.php?id=<?php echo $dn1['id']; ?>"><?php echo htmlentities($dn1['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
     	<td><?php echo $dn1['reps']-1; ?></td>
     	<td><?php echo htmlentities($dn1['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-    	<td><?php echo date('Y/m/d H:i:s' ,$dn1['timestamp']); ?></td>
+    	<td><?php echo "<small>".date('Y/m/d H:i:s' ,$dn1['timestamp'])."</small>" ; ?></td>
     </tr>
 <?php
 }
@@ -45,18 +45,18 @@ if(intval(mysqli_num_rows($req1))==0)
 {
 ?>
 	<tr>
-    	<td colspan="4" class="center">You have no unread message.</td>
+            <td colspan="4"><small>You have no unread message.</small></td>
     </tr>
 <?php
 }
 ?>
 </table>
 <br />
-<h3>Read Messages(<?php echo intval(mysqli_num_rows($req2)); ?>):</h3>
+<h3>Read Messages(<?php echo intval(mysqli_num_rows($req2));//intval gets the integet value ex: 4.5 will be taken as4 ?>):</h3>
 <table>
 	<tr>
     	<th class="title_cell">Title</th>
-        <th>Nb. Replies</th>
+        <th># of Replies</th>
         <th>Participant</th>
         <th>Date or creation</th>
     </tr>
@@ -70,7 +70,7 @@ while($dn2 = mysqli_fetch_array($req2))
     	<td class="left"><a href="read_pm.php?id=<?php echo $dn2['id']; ?>"><?php echo htmlentities($dn2['title'], ENT_QUOTES, 'UTF-8'); ?></a></td>
     	<td><?php echo $dn2['reps']-1; ?></td>
     	<td><?php echo htmlentities($dn2['username'], ENT_QUOTES, 'UTF-8'); ?></td>
-    	<td><?php echo date('Y/m/d H:i:s' ,$dn2['timestamp']); ?></td>
+    	<td><?php echo "<small>"  .date('Y/m/d H:i:s' ,$dn2['timestamp'])  ." </small>"; ?></td>
     </tr>
 <?php
 }

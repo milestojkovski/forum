@@ -48,8 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo '<p>' . mysqli_error($dbc) . '<br /><br />Query: ' . $q . '</p>';
             }
             mysqli_close($dbc); // Close the database connection.
-            // Include the footer and quit the script (to not show the form).
-            //include ('includes/footer.html'); 
+             
             exit();
         } else { // Invalid email address/password combination.
             echo '<h1>Error!</h1>

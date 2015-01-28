@@ -8,7 +8,7 @@ include("includes/config.php");
 include("includes/functions.php");
 $validtopic = $_GET['id'];
 require("includes/header.php");
-/* name of the topic and breadcrumb trail */
+// name of the topic and breadcrumb trail 
 $topicsql = "SELECT topics.subject, topics.forum_id, forums.name FROM topics, forums WHERE topics.forum_id = forums.id AND topics.id = " . $validtopic . ";";
 $topicresult = mysqli_query($dbc, $topicsql) or die(mysqli_error($dbc));
 $topicrow = mysqli_fetch_array($topicresult, MYSQLI_ASSOC);
@@ -27,7 +27,7 @@ $topicrow = mysqli_fetch_array($topicresult, MYSQLI_ASSOC);
             </table>    
 
             <?php
-// messages that are part of the query*/
+// messages that are part of the query
             $threadsql = "SELECT messages.*, users.username FROM messages, users WHERE messages.user_id = users.id AND messages.topic_id = " . $validtopic . " ORDER BY messages.date;";
             $threadresult = mysqli_query($dbc, $threadsql) or die(mysqli_error($dbc));
             ;
@@ -60,7 +60,7 @@ $topicrow = mysqli_fetch_array($topicresult, MYSQLI_ASSOC);
 			</tr>
 			<tr>"; //closed echo
                 if (isset($_SESSION['ADMIN'])) {
-                    // original echo "<small><div style=\"float: right\">[<a href=\"delete.php?func=thread&id={$threadrow['id']}\".\"?forum={$validtopic}\">X</a>] </div></small>"; //deletes  (messages) replys 
+                     
                     echo "<small><div style=\"float: right\">[<a href=\"delete.php?func=msg&id={$threadrow['id']}\".\"?forum={$validtopic}\">X</a>] </div></small>"; //deletes  (messages)
                 }
                 echo"        

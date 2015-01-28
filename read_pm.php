@@ -2,10 +2,6 @@
 session_start();
 $pagename = "read pesonal message";
 require("includes/config.php");
-//require("includes/header.php");
-//
-//require ("includes/inner-top.php");
-
 ?>
 <?php
 if (!isset($_SESSION)) {

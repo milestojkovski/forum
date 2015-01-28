@@ -5,6 +5,7 @@ require("includes/header.php");
 ?>
 <form name="redirect">
     <center>
+        <br><br>
         <b>You will be redirected on home page in<br><br>
             
                 <output name="redirect2" > 

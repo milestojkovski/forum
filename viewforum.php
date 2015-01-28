@@ -47,7 +47,7 @@ require("includes/header.php");
                         <th align="center" class="thCornerR" nowrap="nowrap">Date Posted</th>
                     </tr>
 
-                    <!--// name of the current forum and breadcrumb*/ -->
+                    
                     <?php
                     $topicsql = "SELECT MAX( messages.date ) AS maxdate, topics.id AS topicid, topics.*, users.*
 FROM messages, topics, users WHERE messages.topic_id = topics.id AND topics.user_id = users.id
@@ -56,7 +56,6 @@ AND topics.forum_id = " . $validforum . " GROUP BY messages.topic_id ORDER BY ma
                     $topicnumrows = mysqli_num_rows($topicresult);
                     if ($topicnumrows > 0) {
                         while ($topicrow = mysqli_fetch_array($topicresult)) {
-                            //while($topicrow = mysql_fetch_assoc($topicresult)) {
                             $msgsql = "SELECT id FROM messages WHERE topic_id = " . $topicrow['topicid'];
                             $msgresult = mysqli_query($dbc, $msgsql);
                             $msgnumrows = mysqli_num_rows($msgresult);
