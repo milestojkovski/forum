@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
     </table>
 </form>
 Don't have an account? <a href="register.php">Click here to register <br></a>
-Forgot your password? No worries we got you! <a href="rest_pass_no_log_in.php"> Rest your password</a>!
+Forgot your password? No worries we got you! <a href="rest_pass_no_log_in.php"> Reset your password</a>!
 
 <?php
 require ("includes/inner-bottom.php");
