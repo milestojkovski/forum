@@ -7,7 +7,6 @@ require("includes/config.php");
 if (!isset($_SESSION)) {
     session_start();
 }
-require ("config.php");
 ?>
 <html>
     

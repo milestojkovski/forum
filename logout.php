@@ -13,9 +13,9 @@ require("includes/header.php");
             </b>
     </center>
     <script>
-        //change below target URL to your own
+        //target URL 
         var targetURL = "http://127.0.0.1:8000/forums"
-        //change the second to start counting down from
+        // second to start counting down from
         var countdownfrom = 5
 
 

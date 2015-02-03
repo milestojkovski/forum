@@ -59,13 +59,8 @@ At least one numeric digit");
                 
                $randomstring = ""; // it was giving me some notice that the variable was not defined. i tried with is set and did not worked.
 
-               /*for ($i = 0; $i < 16; $i++) {
-                    
-                   $randomstring .= chr(mt_rand(32, 126));
-                }*/
                
-               
-               $randomstring = rand(10000, 99999);
+               $randomstring = rand(1, 99999);
                 $verifyurl = "$config_basedir/verify.php";
                 $verifystring = urlencode($randomstring);
                 $verifyemail = urlencode($_POST['email']);
@@ -76,13 +71,14 @@ At least one numeric digit");
                     $errors[] = 'You forgot to enter your username.';
                 } else {
                     $un = mysqli_real_escape_string($dbc, trim($_POST['username']));
+                    //echo $un;
                 }
                 // Check for an email address:
                 if (empty($_POST['email'])) {
                     $errors[] = 'You forgot to enter your email address.';
                 } else {
                     $e = mysqli_real_escape_string($dbc, trim($_POST['email']));
-                    // $e = $_POST['email'];
+                    
                 }
                 // Check for a password and match against the confirmed password:
                 if (!empty($_POST['password1'])) {
@@ -91,7 +87,7 @@ At least one numeric digit");
                     } else {
                         $pa = mysqli_real_escape_string($dbc, trim($_POST['password1']));
                     }
-
+                        // perl regular expressions 
                     if (preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,20}$/', $pa)) {
                         $p = $pa;
                     } else {
@@ -104,7 +100,7 @@ At least one numeric digit");
                 }
 
                 if (empty($errors)) { // If everything's OK.
-                    $sql = "INSERT INTO users(username, password, email, verifystring, active, registration_date) VALUES( '$un'  ,  SHA1('$p')  ,  '$e'  , '" . addslashes($randomstring) . "', 0, NOW());";
+                    $sql = "INSERT INTO users(username, password, email, verifystring, active, registration_date) VALUES('$un', SHA1('$p'), '$e', '" . addslashes($randomstring) . "', 0, NOW());";
                    // insert the valus for the user
                     mysqli_query($dbc, $sql) or die(mysqli_error($dbc));
 
@@ -124,12 +120,21 @@ At least one numeric digit");
                 } else {
                     require("includes/header.php");
                     require ("includes/inner-top.php");
-                    echo "All fields are mandatory";
+                  //  echo "All fields are mandatory";
+                    
+		echo '<h1>Error!</h1>
+		<p class="error">The following error(s) occurred:<br />';
+		foreach ($errors as $msg) { // Print each error.
+			echo " - $msg<br />\n";
+		}
+		echo '</p><p>Please try again.</p><p><br /></p>';
+		
+	  
                 }
             }
-        } else {
+        } /*else {
             header("Location: " . $config_basedir . "/register.php?error=pass");
-        }
+        }*/
     } else {
         require("includes/header.php");
         require ("includes/inner-top.php");

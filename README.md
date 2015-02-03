@@ -1,7 +1,8 @@
 # forum
 Forum Website Web Development Class
 
-NOTE: this is just a draft, i am still working on the functionalities. 
+
+HOSTED : www.discusionforum.web44.net 
 
 For picture upload to work you need folder called uploads OUTSIDE forums folder!
 

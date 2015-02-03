@@ -26,6 +26,8 @@ switch ($_GET['func']) {
     case "thread": // deletes topics inside forum 
         $delsql = "DELETE FROM topics WHERE id = " . $validid . ";";
         mysqli_query($dbc, $delsql);
+        header("Location: " . $config_basedir);
+
         break;
     case "msg":// delees message, replies
         $delsql = "DELETE FROM messages WHERE id = " . $validid . ";";
